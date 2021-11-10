@@ -50,10 +50,15 @@ public class Set<T> { //T típusú elemek fogadására alkalmas
         return this.getSize() == 0;
     }
 
+    public boolean isEqual(Set<T> otherSet){
+        return this.getSize() == otherSet.getSize() && this.isPartOf(otherSet);
+    }
+
     public boolean isPartOf(Set<T> otherSet){
-        boolean isBogger = this.getSize() <= otherSet.getSize();
+        boolean isBogger = this.getSize() > otherSet.getSize();
         boolean isPartOf = false;
-        if (!isEmpty()){
+
+        if (!isBogger){
             int i = 0;
             while (i < this.getSize() && otherSet.isElement(this.elements.get(i))){
                 i++;
@@ -62,9 +67,34 @@ public class Set<T> { //T típusú elemek fogadására alkalmas
             isPartOf = i == this.getSize();
         }
 
-        return isEmpty() || isPartOf || isBogger;
+        return isPartOf;
 
     }
+
+    public Set<T> unio(Set<T> otherSet){
+        Set<T> unioSet = this;
+        for (T elemeent: this.elements){
+            unioSet.add(elemeent);
+        }
+        for (T elemeent: otherSet.elements){
+            unioSet.add(elemeent);
+        }
+        return unioSet;
+    }
+
+    public Set<T> intersect(Set<T> otherSet){
+        Set<T> intersectSet = new Set<T>();
+        for (T element: this.elements) {
+            for (T otherElement: otherSet.elements){
+                if(element == otherElement){
+                    intersectSet.add(element);
+                }
+            }
+
+        }
+        return intersectSet;
+    }
+
 
 
 
