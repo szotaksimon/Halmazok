@@ -42,16 +42,5 @@ public class SzobaKerekpar {
         System.out.println(String.format("%d napon használják a bisiklit!", unio.getSize()));
         System.out.println(String.format("a szobakerékpár %.2f százalékos kihasználtsága", unio.getSize()/31.0));
 
-
-
-
-
-
-
-
-
-
-
-
     }
 }
